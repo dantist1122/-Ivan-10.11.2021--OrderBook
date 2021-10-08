@@ -29,6 +29,7 @@ const OrderTable = () => {
 
   const [orders, setOrders] = useState<OrderType>(initOrders);
   const [delta, setDelta] = useState<DeltaType>(initDelta);
+  const [webSockedError, setWebSockedError] = useState("");
   const [isWindowActive, setIsWindowActive] = useState(true);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [productId, setProductId] = useState(["PI_XBTUSD"]);
@@ -49,6 +50,8 @@ const OrderTable = () => {
       if (data.feed?.includes("snapshot")) {
         setOrders(data);
         setIsDataLoaded(true);
+      } else if (data.event === "alert") {
+        setWebSockedError(data.message);
       } else {
         setDelta(data);
       }
@@ -56,18 +59,24 @@ const OrderTable = () => {
     webSocket.onclose = () => {
       webSocket.close();
     };
+    webSocket.onerror = () => {
+      setWebSockedError("Generic Error");
+    };
     if (!isWindowActive) {
-      webSocket.close();
+      webSocket.onopen = () => {
+        webSocket.close();
+      };
     }
-    // setTimeout(() => webSocket.close(), 5000)
     return () => {
-      webSocket.send(
-        JSON.stringify({
-          event: "unsubscribe",
-          feed: "book_ui_1",
-          product_ids: productId,
-        })
-      );
+      if (webSocket.readyState !== 3) {
+        webSocket.send(
+          JSON.stringify({
+            event: "unsubscribe",
+            feed: "book_ui_1",
+            product_ids: productId,
+          })
+        );
+      }
     };
   }, [productId, isWindowActive]);
 
@@ -112,12 +121,19 @@ const OrderTable = () => {
     setIsWindowActive(true);
     setIsDataLoaded(false);
   };
+  if (webSockedError) {
+    return (
+      <div className="webSockedError">
+        <div className="error">{`ERROR: ${webSockedError}`}</div>
+      </div>
+    );
+  }
 
   if (!isWindowActive) {
     return Disconect(() => handleInactivestate());
   }
 
-  if (!isDataLoaded) {
+  if (!isDataLoaded && !webSockedError) {
     return <div className="spinner"></div>;
   }
   const numberOfrows = calculateNumberOfRows(isVerticalScren);

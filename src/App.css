@@ -149,3 +149,10 @@ thead {
   padding: 0;
   box-sizing: border-box;
 }
+.webSockedError {
+  margin: auto;
+  color: red;
+}
+.error {
+  margin-bottom: 20px;
+}
