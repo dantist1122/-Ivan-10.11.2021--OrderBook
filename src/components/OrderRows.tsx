@@ -18,8 +18,8 @@ export const OrderRows = (
     return bids.map((item: number[], index: number) => {
       total = index === 0 ? item[1] : (total += item[1]);
       const deep = (total * 100) / highestTotal;
-      const secondCell = deep >= 33.3 ? true : false;
-      const thirdCell = deep >= 66.6 ? true : false;
+      const secondCell = deep >= 33.333 ? true : false;
+      const thirdCell = deep >= 66.666 ? true : false;
       const deepDirection = isVerticalScren ? "left" : "right";
       return (
         <tr
@@ -37,8 +37,8 @@ export const OrderRows = (
           {!isVerticalScren ? (
             <td
               style={{
-                backgroundImage: `url(${GreenBackground})`,
-                backgroundSize: `${deep * 3}% 100%`,
+                backgroundImage: `url(${thirdCell ? GreenBackground : ""})`,
+                backgroundSize: `${(deep - 66) * 3}% 100%`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: `${deepDirection}`,
               }}
@@ -73,9 +73,8 @@ export const OrderRows = (
           {!isVerticalScren ? (
             <td
               style={{
-                color: "#11825c",
-                backgroundImage: `url(${thirdCell ? GreenBackground : ""})`,
-                backgroundSize: `${(deep - 66) * 3}% 100%`,
+                backgroundImage: `url(${GreenBackground})`,
+                backgroundSize: `${deep * 3}% 100%`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: `${deepDirection}`,
               }}
@@ -87,7 +86,7 @@ export const OrderRows = (
             <td
               style={{
                 backgroundImage: `url(${thirdCell ? GreenBackground : ""})`,
-                backgroundSize: `${(deep - 66) * 3}% 100%`,
+                backgroundSize: `${(deep - 66.666) * 3}% 100%`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: `${deepDirection}`,
               }}
