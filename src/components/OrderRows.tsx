@@ -1,5 +1,7 @@
 import React from "react";
 import { numberWithCommas } from "../common/Utils";
+import GreenBackground from '../green.png';
+import RedBackground from '../red.png';
 
 export const OrderRows = (
   bids: number[][],
@@ -16,13 +18,16 @@ export const OrderRows = (
     return bids.map((item: number[], index: number) => {
       total = index === 0 ? item[1] : (total += item[1]);
       const deep = (total * 100) / highestTotal;
-      const deepDirection = isVerticalScren ? "right top" : "left top";
-      const deepDirection1 = !isVerticalScren ? "right top" : "left top";
+      const deepDirection = isVerticalScren ? "left" : "right";
       return (
         <tr
           key={index}
           style={{
-            background: `-webkit-gradient(linear,  ${deepDirection1}, ${deepDirection}, color-stop(${deep}%, #123534), color-stop(${deep}%, #131723))`,
+            backgroundImage: `url(${GreenBackground})`,
+            backgroundSize: `${deep}% 100%`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: `${deepDirection}`,
+            // background: `-webkit-gradient(linear,  ${deepDirection1}, ${deepDirection}, color-stop(${deep}%, #123534), color-stop(${deep}%, #131723))`,
           }}
         >
           {!isVerticalScren ? (
@@ -64,7 +69,10 @@ export const OrderRows = (
         <tr
           key={index}
           style={{
-            background: `-webkit-gradient(linear, left top, right top, color-stop(${deep}%, #3d1e28), color-stop(${deep}%, #131723))`,
+            backgroundImage: `url(${RedBackground})`,
+            backgroundSize: `${deep}% 100%`,
+            backgroundRepeat: 'no-repeat',
+            // background: `-webkit-gradient(linear, left top, right top, color-stop(${deep}%, #3d1e28), color-stop(${deep}%, #131723))`,
           }}
         >
           <td style={{ color: "#9f2e32" }}>
