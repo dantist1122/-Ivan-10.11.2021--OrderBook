@@ -16,12 +16,13 @@ export const OrderRows = (
     return bids.map((item: number[], index: number) => {
       total = index === 0 ? item[1] : (total += item[1]);
       const deep = (total * 100) / highestTotal;
-      const deepDirection = isVerticalScren ? "right" : "left";
+      const deepDirection = isVerticalScren ? "right top" : "left top";
+      const deepDirection1 = !isVerticalScren ? "right top" : "left top";
       return (
         <tr
           key={index}
           style={{
-            background: `linear-gradient(to ${deepDirection}, #123534, ${deep}%, #131723 ${deep}% 100%)`
+            background: `-webkit-gradient(linear,  ${deepDirection1}, ${deepDirection}, color-stop(${deep}%, #123534), color-stop(${deep}%, #131723))`,
           }}
         >
           {!isVerticalScren ? (
@@ -63,7 +64,7 @@ export const OrderRows = (
         <tr
           key={index}
           style={{
-            background: `linear-gradient(to right, #3d1e28, ${deep}%, #131723 ${deep}% 100%)`,
+            background: `-webkit-gradient(linear, left top, right top, color-stop(${deep}%, #3d1e28), color-stop(${deep}%, #131723))`,
           }}
         >
           <td style={{ color: "#9f2e32" }}>
