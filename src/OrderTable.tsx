@@ -59,7 +59,7 @@ const OrderTable = () => {
     if (!isWindowActive) {
       webSocket.close();
     }
-
+    // setTimeout(() => webSocket.close(), 5000)
     return () => {
       webSocket.send(
         JSON.stringify({
