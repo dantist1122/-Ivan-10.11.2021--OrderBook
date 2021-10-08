@@ -21,7 +21,7 @@ export const OrderRows = (
         <tr
           key={index}
           style={{
-            background: `linear-gradient(to ${deepDirection}, #123534, ${deep}%, #131723 ${deep}% 100%)`,
+            backgroundImage: `linear-gradient(to ${deepDirection}, #123534, ${deep}%, #131723 ${deep}% 100%)`
           }}
         >
           {!isVerticalScren ? (
@@ -63,7 +63,7 @@ export const OrderRows = (
         <tr
           key={index}
           style={{
-            background: `linear-gradient(to right, #3d1e28, ${deep}%, #131723 ${deep}% 100%)`,
+            backgroundImage: `linear-gradient(to right, #3d1e28, ${deep}%, #131723 ${deep}% 100%)`,
           }}
         >
           <td style={{ color: "#9f2e32" }}>
