@@ -1,26 +1,16 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+}
+
+.App-container {
+  background-color: #131723;
+  min-height: calc(100vh - 40px);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  height: calc(100vh -50px);
   color: white;
 }
 
@@ -35,4 +25,127 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.header {
+  align-self: flex-start;
+  background-color: #131723;
+  padding-left: 40px;
+  padding-top: 10px;
+  order: 1;
+  color: white;
+  width: 100%;
+  text-align: left;
+  height: 40px;
+  width: auto;
+  border-bottom: 2px #202834 solid;
+}
+.spread {
+  margin: auto;
+  color: gray;
+  height: 40px;
+}
+.spread-wraper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  padding-top: 10px;
+  order: 2;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-y: auto;
+  text-align: center;
+}
+h1,
+h2 {
+  text-align: center;
+}
+td {
+  padding: 0px;
+  height: 40px !important;
+}
+th {
+  color: gray;
+}
+
+tr {
+  height: 40px !important;
+}
+thead {
+  border-bottom: 1px #202834 solid;
+}
+.toggle-feed {
+  background-color: #5741d9;
+  border-radius: 5px;
+  width: 16%;
+  height: 30px;
+  color: white;
+  order: 4;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 100px;
+}
+.disconent {
+  margin: auto;
+  background-color: #5741d9;
+  border-radius: 5px;
+  color: white;
+  min-width: 100px;
+  min-height: 40px;
+}
+
+.spinner {
+  margin: auto;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+.bids {
+  order: 3;
+  width: 50%;
+  height: 100%;
+}
+.asks {
+  order: 3;
+  width: 50%;
+  height: 100%; 
+}
+.verital-spread {
+  order: 3;
+  position: relative;
+  height: 0px;
+  margin-top: -20px;
+}
+.verital-asks {
+  order: 2;
+  width: 100%;
+}
+.verital-bids {
+  order: 4;
+  width: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
