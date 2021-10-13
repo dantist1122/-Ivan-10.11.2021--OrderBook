@@ -29,7 +29,7 @@ export const OrderRows = (
               // Logic around coloring background was introduced due to low mobile browser support
               // for -webkit-gradient with table row: it apply gradient color for every single cell inthe table
               // there is open issue on stackOverflow around it https://stackoverflow.com/questions/59909465/css-thead-gradient-background-on-mobile-issue
-              // background: `-webkit-gradient(linear,  ${deepDirection1}, ${deepDirection}, color-stop(${deep}%, #123534), color-stop(${deep}%, #131723))`,
+              background: `-webkit-gradient(linear,  ${deepDirection}, ${deepDirection}, color-stop(${deep}%, #123534), color-stop(${deep}%, #131723))`,
             }
           }
         >
